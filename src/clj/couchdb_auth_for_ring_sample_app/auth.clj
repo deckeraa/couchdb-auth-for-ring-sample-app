@@ -90,17 +90,18 @@
       (assoc (json-response userCtxt) :cookies new-cookie)
       (json-response false))))
 
+(defn default-not-authorized-fn [req]
+  (assoc 
+   (response/content-type (response/response "Not authorized") "text/html")
+   :status 401))
+
 (defn wrap-cookie-auth
   "Ring middleware that pass a handler the req and the username if the user's cookie is valid.
   Returns the results of not-authorized-fn (or, by default, a 'not authorized' response)
   otherwise.
   Not authorized-fn takes in a single argument which is the Ring request."
   ([handler]
-   (wrap-cookie-auth handler
-                     (fn [req]
-                       (assoc 
-                        (response/content-type (response/response "Not authorized") "text/html")
-                        :status 401))))
+   (wrap-cookie-auth handler default-not-authorized-fn))
   ([handler not-authorized-fn]
    (fn [req]
      (let [cookie-check-val (cookie-check-from-req req)]
