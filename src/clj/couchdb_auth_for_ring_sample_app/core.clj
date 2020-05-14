@@ -1,5 +1,6 @@
 (ns couchdb-auth-for-ring-sample-app.core
   (:require
+   [com.stronganchortech/couchdb-auth-for-ring.core]
    [couchdb-auth-for-ring-sample-app.auth :as auth]
    [ring.middleware.cookies :refer [wrap-cookies]]
    [ring.adapter.jetty :refer [run-jetty]]))
