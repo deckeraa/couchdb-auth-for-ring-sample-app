@@ -1,7 +1,6 @@
 (ns couchdb-auth-for-ring-sample-app.core
   (:require
-   [couchdb-auth-for-ring.core]
-   [couchdb-auth-for-ring-sample-app.auth :as auth]
+   [com.stronganchortech.couchdb-auth-for-ring :as auth]
    [ring.middleware.cookies :refer [wrap-cookies]]
    [ring.adapter.jetty :refer [run-jetty]]))
 
@@ -29,7 +28,7 @@
 (defn simple-router [req]
   (case (:uri req)
     "/hello" (hello req)
-    "/secret" ((com.stronganchortech.couchdb-auth-for-ring.core/wrap-cookie-auth secret) req)
+    "/secret" ((com.stronganchortech.couchdb-auth-for-ring/wrap-cookie-auth secret) req)
     "/login" (auth/login-handler req)
     "/refresh" (auth/cookie-check-handler req)
     "/logout" ((auth/wrap-cookie-auth auth/logout-handler) req)
