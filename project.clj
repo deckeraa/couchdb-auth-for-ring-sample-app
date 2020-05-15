@@ -7,7 +7,7 @@
                  [ring/ring-json "0.4.0"]
                  [ring-json-response "0.2.0"]
                  [clj-http "3.9.1"]
-                 [com.stronganchortech/couchdb-auth-for-ring "0.1.0-SNAPSHOT"]
+                 [com.stronganchortech/couchdb-auth-for-ring "1.0.1"]
                  [devcards "0.2.4" :exclusions [cljsjs/react]]]
 
   :min-lein-version "2.5.3"
